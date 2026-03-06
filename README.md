@@ -65,7 +65,7 @@ routemaster/
 4. **Access the App**: Click the `Local` or `Network` link provided in your terminal.
 
 ## 🔗 Deployed Link
-**[Live Demo via Localtunnel](https://routemaster-demo.loca.lt)**  
+**[Live Demo via Localtunnel](https://routemastersmartpick.loca.lt)**  
 *(Note: Link depends on active local server)*
 
 ## 🧠 Behind the Scenes: The Algorithm
