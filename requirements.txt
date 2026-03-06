@@ -1,0 +1,20 @@
+# RouteMaster Requirements
+
+## Backend (Node.js/Express)
+- nodejs >= 16.x
+- express
+- cors
+- nodemon (dev dependency)
+
+## Frontend (React/Vite)
+- nodejs >= 18.x
+- react
+- react-dom
+- tailwindcss
+- @tailwindcss/vite
+- vite
+
+## Core Algorithms
+- JavaScript (ES6+)
+- BFS (Breadth-First Search)
+- Bitmask Dynamic Programming (TSP)
