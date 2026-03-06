@@ -71,6 +71,30 @@ export default function App() {
     setStage(STAGE.PAINT);
   };
 
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const data = JSON.parse(event.target.result);
+        if (!data.grid || !Array.isArray(data.grid)) throw new Error('Invalid JSON: Missing grid array');
+
+        setGrid(data.grid);
+        setRows(data.grid.length);
+        setCols(data.grid[0].length);
+        setPath([]);
+        setStats(null);
+        setError(null);
+        setStage(STAGE.PAINT);
+      } catch (err) {
+        setError('Failed to load JSON: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  };
+
   // ── Cell painting ─────────────────────────────────────────
   const paintCell = useCallback((r, c) => {
     if (r === 0 && c === 0) return; // Start is immutable
@@ -208,6 +232,21 @@ export default function App() {
             >
               Create Grid →
             </button>
+
+            <div className="relative mt-2">
+              <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                <div className="w-full border-t border-slate-200"></div>
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-white px-2 text-slate-400 font-medium">Or</span>
+              </div>
+            </div>
+
+            <label className="flex flex-col items-center gap-2 p-4 border-2 border-dashed border-slate-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 cursor-pointer transition-all">
+              <span className="text-2xl">📁</span>
+              <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Upload JSON File</span>
+              <input type="file" accept=".json" onChange={handleFileUpload} className="hidden" />
+            </label>
           </div>
         )}
 
