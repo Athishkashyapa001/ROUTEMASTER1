@@ -20,10 +20,8 @@ RouteMaster is a full-stack web application designed to optimize order picking r
 ## 📂 Project Structure
 ```text
 routemaster/
-├── algorithms/       # Core pathfinding logic
-│   ├── bfs.js        # Grid traversal & obstacle avoidance
-│   └── tspBitmask.js # Multi-target visiting order optimization
 ├── backend/          # Express.js server & API routes
+│   ├── algorithms/   # Core pathfinding logic (Moved here for Render!)
 │   ├── routes/       # API endpoints (POST /optimize-route)
 │   └── server.js     # Server configuration
 ├── frontend/         # React + Vite application
