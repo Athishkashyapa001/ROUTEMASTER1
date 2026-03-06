@@ -121,6 +121,10 @@ export default function App() {
     }, 150);
   };
 
+  const onMouseDown = useCallback((r, c) => { dragging.current = true; paintCell(r, c); }, [paintCell]);
+  const onMouseEnter = useCallback((r, c) => { if (dragging.current) paintCell(r, c); }, [paintCell]);
+  const onMouseUp = useCallback(() => { dragging.current = false; }, []);
+
   const isPath = (r, c) => path.some(p => p[0] === r && p[1] === c);
 
   return (
@@ -226,7 +230,7 @@ export default function App() {
         <div className="col-span-12 lg:col-span-8 order-1 lg:order-2">
           {grid.length > 0 ? (
             <div className="glass-panel p-2 md:p-6 rounded-[2.5rem] relative group shadow-2xl">
-              <div className="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-[2.6rem] blur opacity-10 group-hover:opacity-20 transition duration-1000"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-[2.6rem] blur opacity-10 group-hover:opacity-20 transition duration-1000 pointer-events-none"></div>
               <div className="relative bg-slate-950/80 rounded-[2rem] overflow-hidden p-2">
                 <div
                   className="grid gap-1.5 transition-all duration-500"
