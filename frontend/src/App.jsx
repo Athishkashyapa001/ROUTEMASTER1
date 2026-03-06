@@ -107,7 +107,8 @@ export default function App() {
     setPath([]);
 
     try {
-      const res = await fetch('http://10.97.96.62:5000/optimize-route', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/optimize-route`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ grid, start: [0, 0], targets }),

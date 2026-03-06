@@ -12,5 +12,5 @@ app.use(express.json());
 app.use('/', optimizerRoute);
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`RouteMaster Backend running on http://10.97.96.62:${PORT}`);
+    console.log(`RouteMaster Backend running on port ${PORT}`);
 });
