@@ -98,14 +98,14 @@ export default function App() {
       });
       if (!res.ok) throw new Error("Backend Error");
       const data = await res.json();
-      runAnimation(data.path, data.total_steps, data.targets_collected);
+      runAnimation(data.path, data.total_steps, data.targets_collected, data.execution_time);
     } catch (err) {
       setError("Calculation failed. Ensure backend is live.");
       setBusy(false);
     }
   };
 
-  const runAnimation = (fullPath, totalSteps, targetsCollected) => {
+  const runAnimation = (fullPath, totalSteps, targetsCollected, executionTime) => {
     let i = 0;
     const built = [];
     const tick = setInterval(() => {
@@ -114,7 +114,7 @@ export default function App() {
       i++;
       if (i >= fullPath.length) {
         clearInterval(tick);
-        setStats({ totalSteps, targetsCollected });
+        setStats({ totalSteps, targetsCollected, executionTime });
         setBusy(false);
         setTimeout(() => setStage(STAGE.DONE), 0);
       }
@@ -205,6 +205,10 @@ export default function App() {
                   <span className="text-slate-400 font-medium">ITEMS PICKED</span>
                   <span className="text-3xl font-bold text-white">{stats.targetsCollected}</span>
                 </div>
+                <div className="glass-card p-4 rounded-2xl flex justify-between items-center border border-brand-accent/30 bg-brand-accent/5">
+                  <span className="text-brand-accent font-medium">EXECUTION TIME</span>
+                  <span className="text-3xl font-bold text-brand-accent">{stats.executionTime}ms</span>
+                </div>
               </div>
               <button onClick={goSetup} className="w-full py-4 rounded-2xl bg-white text-slate-900 font-bold hover:bg-slate-100 transition-all flex items-center justify-center gap-2">
                 <span>🔄</span> CALCULATE NEW GRID
@@ -254,7 +258,7 @@ export default function App() {
                         className={`aspect-square rounded-lg flex items-center justify-center text-xl transition-all duration-300 transform
                           ${isS ? 'bg-gradient-to-br from-blue-500 to-blue-700 shadow-lg shadow-blue-500/30' :
                             isT ? 'bg-gradient-to-br from-amber-400 to-orange-600 animate-collect' :
-                              isO ? 'bg-slate-800 scale-90' :
+                              isO ? 'bg-gradient-to-br from-yellow-300 to-yellow-600 scale-90 border border-yellow-400/50' :
                                 isP ? 'bg-gradient-to-br from-emerald-400 to-green-600 scale-95 shadow-lg shadow-emerald-500/40' :
                                   'bg-slate-900 hover:bg-slate-800'}`}
                       >
