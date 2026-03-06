@@ -207,7 +207,7 @@ export default function App() {
                 </div>
                 <div className="glass-card p-4 rounded-2xl flex justify-between items-center border border-brand-accent/30 bg-brand-accent/5">
                   <span className="text-brand-accent font-medium">EXECUTION TIME</span>
-                  <span className="text-3xl font-bold text-brand-accent">{(stats.executionTime / 1000).toFixed(3)}s</span>
+                  <span className="text-3xl font-bold text-brand-accent">{(stats.executionTime / 1000).toFixed(3)}</span>
                 </div>
               </div>
               <button onClick={goSetup} className="w-full py-4 rounded-2xl bg-white text-slate-900 font-bold hover:bg-slate-100 transition-all flex items-center justify-center gap-2">
