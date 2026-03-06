@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { optimizeRoute } = require('../../algorithms/index');
+const { optimizeRoute } = require('../algorithms/index');
 
 router.post('/optimize-route', (req, res) => {
     try {
