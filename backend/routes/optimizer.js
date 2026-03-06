@@ -13,7 +13,10 @@ router.post('/optimize-route', (req, res) => {
         const result = optimizeRoute(grid, start, targets);
 
         if (result.error) {
-            return res.status(400).json(result);
+            return res.status(404).json({
+                error: result.error,
+                message: "No valid path found. Make sure targets are not completely blocked by walls!"
+            });
         }
 
         // Exactly formatting the final result as per constraints
